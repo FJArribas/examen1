@@ -31,3 +31,30 @@ En el, definimos una clase donde hay funciones para crear nuevas instancias de l
 Este archivo es un comando "custom" de django.
 Con el comando python3 manage.py poblar, podemos ejecutar el script, y veremos si ha funcionado desde la pantalla
 de administrador del proyecto Django. He añadido a la entrega una captura de pantalla con el resultado.
+
+-------------------------------------------------------------
+4. Desplegar el proyecto en Heroku
+-------------------------------------------------------------
+Para desplegar a Heroku, empezamos añadiendo los documentos
+Procfile, requirements.txt y runtime.txt
+Podemos obtener requirements.txt con el comando
+    $ pip3 freeze > requirements.txt
+Es importante que tenga gunicorn==19.9.0.
+Runtime tiene la versión de Python que se ejecutará en Heroku, y Procfile el texto
+    web: gunicorn examen.wsgi --log-file -
+
+El segundo paso es cambiar wsgi.py para que use Cling
+
+Ahora podemos subir el proyecto a GitHub, y seguidamente crear un proyecto Heroku con
+    $ heroku create
+Añadimos el nombre del proyecto a ALLOWED_HOSTS en settings.py, cambiamos el modo DEBUG a FALSE,
+y comprobamos que funcione correctamente en local y en Heroku.
+
+Ejecutamos los comandos
+    $ heroku run bash
+    $ python manage.py migrate
+    $ python manage.py makemigrations
+    $ python manage.py createsuperuser
+    $ python poblar.py
+
+Si todo funciona correctamente, habremos conseguido poblar la base de datos en Heroku.
