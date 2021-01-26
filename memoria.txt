@@ -1,0 +1,33 @@
+--------------------------------------------------------------
+1. Crear proyecto Django
+--------------------------------------------------------------
+Para empezar, creamos un proyecto con el comando 
+    $ django-admin.py startproject examen
+Y un app en el proyecto con el comando
+    $ python3 manage.py startapp aplicacion
+
+En el documento "settings.py", añadimos aplicación a INSTALLED_APPS.
+Adicionalmente, cambiamos la configuración de la base de datos para que funcione con PostgreSQL
+
+Por último, hacemos las migraciones necesarias con los comandos:
+    $ createdb -U alumnodb examen
+    $ python3 manage.py makemigrations
+    $ python3 manage.py migrate
+
+Y creamos un superuser, alumnodb.
+
+--------------------------------------------------------------
+2. Crear modelo de datos
+--------------------------------------------------------------
+En models.py, creamos los modelos acorde al enunciado, siguiendo los protocolos de Django.
+En admin.py, importamos los modelos recién creados.
+Realizamos las migraciones de nuevo, y deberíamos ver los modelos creados desde http://127.0.0.1:8001/admin/
+
+-------------------------------------------------------------
+3. Escribir script para poblar la base de datos
+-------------------------------------------------------------
+Creamos el fichero poblar.py, y lo ponemos en la carpeta aplicacion/management/commands
+En el, definimos una clase donde hay funciones para crear nuevas instancias de los modelos.
+Este archivo es un comando "custom" de django.
+Con el comando python3 manage.py poblar, podemos ejecutar el script, y veremos si ha funcionado desde la pantalla
+de administrador del proyecto Django. He añadido a la entrega una captura de pantalla con el resultado.
