@@ -24,10 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k1g##wofuj^dz7=op204!mqj0#39^$o@64vm)cof3=1d5@gap3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [u'localhost', u'127.0.0.1']
+ALLOWED_HOSTS = [u'pacific-escarpment-73988.herokuapp.com',u'localhost',u'127.0.0.1']
 
+STATIC_ROOT = 'staticfiles'
 
 # Application definition
 
